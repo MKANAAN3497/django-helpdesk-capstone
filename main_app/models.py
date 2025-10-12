@@ -17,8 +17,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
-    def __str__(self): return self.name
 
 class Ticket(models.Model):
     PRIORITY = [('low','Low'),('medium','Medium'),('high','High'),('urgent','Urgent')]
