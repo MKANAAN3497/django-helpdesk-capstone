@@ -1,12 +1,23 @@
 from django.db import models
-
-from django.db import models
 from django.contrib.auth.models import User
 
 class Category(models.Model):
-    TYPES = [('hardware','Hardware'),('software','Software'),('network','Network'),('security','Security'),('other','Other')]
+    TYPES = [
+        ('hardware', 'Hardware'),
+        ('software', 'Software'),
+        ('network', 'Network'),
+        ('security', 'Security'),
+        ('other', 'Other'),
+    ]
     name = models.CharField(max_length=80, unique=True)
     type = models.CharField(max_length=30, choices=TYPES, default='other')
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+    
     def __str__(self): return self.name
 
 class Ticket(models.Model):
