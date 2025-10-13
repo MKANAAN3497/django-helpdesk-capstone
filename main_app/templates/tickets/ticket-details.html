@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ ticket.title }}</h2>
+
+<p><strong>Status:</strong> {{ ticket.status }}</p>
+<p><strong>Priority:</strong> {{ ticket.priority }}</p>
+<p><strong>Category:</strong> {{ ticket.category }}</p>
+<p><strong>Description:</strong> {{ ticket.description }}</p>
+
+<p>
+  <a href="/tickets/{{ ticket.id }}/edit/">Edit</a> |
+  <a href="/tickets/{{ ticket.id }}/delete/">Delete</a> |
+  <a href="/tickets/">Back to List</a>
+</p>
+{% endblock %}

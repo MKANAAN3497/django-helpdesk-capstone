@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All Tickets</h2>
+
+<a href="/tickets/new/">+ Add New Ticket</a>
+<hr>
+
+{% for ticket in tickets %}
+  <p>
+    <strong>{{ ticket.title }}</strong> - {{ ticket.status }}  
+    (<a href="/tickets/{{ ticket.id }}/">View</a> |
+     <a href="/tickets/{{ ticket.id }}/edit/">Edit</a> |
+     <a href="/tickets/{{ ticket.id }}/delete/">Delete</a>)
+  </p>
+{% empty %}
+  <p>No tickets available.</p>
+{% endfor %}
+{% endblock %}
