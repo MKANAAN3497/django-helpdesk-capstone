@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
+{% block title %}Tickets{% endblock %}
 {% block content %}
-<h2>All Tickets</h2>
-
-<a href="/tickets/new/">+ Add New Ticket</a>
-<hr>
-
-{% for ticket in tickets %}
-  <p>
-    <strong>{{ ticket.title }}</strong> - {{ ticket.status }}  
-    (<a href="/tickets/{{ ticket.id }}/">View</a> |
-     <a href="/tickets/{{ ticket.id }}/edit/">Edit</a> |
-     <a href="/tickets/{{ ticket.id }}/delete/">Delete</a>)
-  </p>
-{% empty %}
-  <p>No tickets available.</p>
-{% endfor %}
+<h1>Tickets</h1>
+<a href="{% url 'ticket_create' %}">New Ticket</a>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th><th>Title</th><th>Status</th><th>Creator</th><th>Assignee</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in tickets %}
+    <tr>
+      <td>{{ t.id }}</td>
+      <td><a href="{% url 'ticket_detail' t.id %}">{{ t.title }}</a></td>
+      <td>{{ t.get_status_display }}</td>
+      <td>{{ t.created_by.username }}</td>
+      <td>{% if t.assigned_to %}{{ t.assigned_to.username }}{% else %}-{% endif %}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No tickets</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

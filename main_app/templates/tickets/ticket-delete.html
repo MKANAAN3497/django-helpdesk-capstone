@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Delete Ticket{% endblock %}
 {% block content %}
-<h2>Delete Ticket</h2>
-<p>Are you sure you want to delete <strong>{{ ticket.title }}</strong>?</p>
-
+<h1>Delete Ticket {{ ticket.id }}?</h1>
 <form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
+  {% csrf_token %}
+  <button type="submit">Confirm</button>
+  <a href="{% url 'ticket_detail' ticket.id %}">Cancel</a>
 </form>
-
-<p><a href="/tickets/">Cancel</a></p>
 {% endblock %}

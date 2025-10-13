@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>IT Ticketing System</title>
+  <meta charset="utf-8">
+  <title>{% block title %}Helpdesk{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <h1>IT Ticketing System</h1>
-        <nav>
-            <a href="/">Home</a> |
-            <a href="/tickets/">Tickets</a> |
-            <a href="/categories/">Categories</a> |
-            <a href="/admin/">Admin</a>
-        </nav>
-        <hr>
-    </header>
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'ticket_list' %}">Tickets</a>
+      <form id="logout-form" method="post" action="{% url 'logout' %}" style="display:inline">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+  </nav>
 
-    {% block content %}
-    {% endblock %}
-
-    <footer>
-        <hr>
-        <p>© 2025 IT Helpdesk</p>
-    </footer>
+  {% block content %}{% endblock %}
 </body>
 </html>
