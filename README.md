@@ -16,10 +16,11 @@ diagram:
 
 
 Entity notes:
-- Ticket: title, description, status, priority, category, created_by, assigned_to, timestamps
-- Category: name
-- Comment: ticket, author, text, timestamp
-- Attachment: ticket, uploaded_by, file, timestamp
+- User: standard Django auth_user (username, email, is_staff, is_superuser, date_joined)
+- Category: id, name
+- Ticket: id, title, description, status, priority, created_at, updated_at; FKs → category (Category), created_by (User), assigned_to (User)
+- Comment: id, body, created_at; FKs → ticket (Ticket), author (User)
+- Attachment: id, file, uploaded_at; FKs → ticket (Ticket), uploaded_by (User)
 
 ## Installation & Setup
 
@@ -56,19 +57,6 @@ python manage.py createsuperuser
 ### 6) Run the server
 ```bash
 python manage.py runserver
-```
-
-### 7) Optional: create some categories
-Use the Django admin or add a few from the shell:
-```bash
-python manage.py shell
-```
-```python
-from main_app.models import Category
-Category.objects.get_or_create(name="General")
-Category.objects.get_or_create(name="Hardware")
-Category.objects.get_or_create(name="Software")
-exit()
 ```
 
 ## Features / User Stories
