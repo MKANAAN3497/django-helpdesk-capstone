@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}Delete Ticket{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tickets.css' %}">
 {% block content %}
 <h1>Delete Ticket {{ ticket.id }}?</h1>
 <form method="post">

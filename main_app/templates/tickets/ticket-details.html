@@ -1,25 +1,47 @@
 {% extends 'base.html' %}
-{% block title %}Ticket {{ ticket.id }}{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tickets.css' %}">
+{% endblock %}
 {% block content %}
 <h1>{{ ticket.title }}</h1>
-
 <p><strong>Status:</strong> {{ ticket.get_status_display }}</p>
+<p><strong>Priority:</strong> {{ ticket.get_priority_display }}</p>
+<p><strong>Category:</strong> {% if ticket.category %}{{ ticket.category.name }}{% else %}-{% endif %}</p>
 <p><strong>Description:</strong> {{ ticket.description }}</p>
-<p><strong>Created by:</strong> {{ ticket.created_by.username }}</p>
-<p><strong>Assigned to:</strong>
-  {% if ticket.assigned_to %}
-    {{ ticket.assigned_to.username }}
-  {% else %}
-    -
-  {% endif %}
-</p>
 
 {% if user.is_superuser or user.is_staff %}
-  <a href="{% url 'ticket_update' ticket.id %}">Edit</a>
+  <a class="btn" href="{% url 'ticket_update' ticket.id %}">Edit</a>
   {% if user.is_superuser %}
-    <a href="{% url 'ticket_delete' ticket.id %}">Delete</a>
+    <a class="btn danger" href="{% url 'ticket_delete' ticket.id %}">Delete</a>
   {% endif %}
 {% endif %}
 
-<a href="{% url 'ticket_list' %}">Back to Tickets</a>
+<h2>Attachments</h2>
+<ul>
+  {% for a in ticket.attachments.all %}
+    <li><a href="{{ a.file.url }}" target="_blank">{{ a.filename }}</a> • {{ a.uploaded_by.username }}</li>
+  {% empty %}
+    <li>No attachments</li>
+  {% endfor %}
+</ul>
+<form method="post" enctype="multipart/form-data" action="{% url 'attachment_upload' ticket.id %}">
+  {% csrf_token %}
+  {{ attachment_form.as_p }}
+  <button type="submit" class="btn">Upload</button>
+</form>
+
+<h2>Comments</h2>
+<ul>
+  {% for c in ticket.comments.all %}
+    <li><strong>{{ c.author.username }}</strong> • {{ c.created_at|date:"Y-m-d H:i" }}<br>{{ c.body }}</li>
+  {% empty %}
+    <li>No comments</li>
+  {% endfor %}
+</ul>
+<form method="post" action="{% url 'comment_create' ticket.id %}">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <button type="submit" class="btn">Add Comment</button>
+</form>
 {% endblock %}
