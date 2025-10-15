@@ -1,16 +1,13 @@
-table {
-  width:100%;
-  border-collapse:collapse;
-  background:white;
-  border-radius:8px;
-  overflow:hidden;
+.page-title{margin:0 0 12px 0}
+.filters{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto auto;gap:8px;align-items:end;margin-bottom:16px}
+.filters input,.filters select,.filters button,.filters a{padding:8px}
+.reset-link{text-decoration:none;display:inline-block;text-align:center}
+.tickets{width:100%;border-collapse:collapse}
+.tickets th,.tickets td{text-align:left;border-bottom:1px solid #eee;padding:8px}
+.assign-form{display:flex;gap:6px}
+.empty{padding:24px;border:1px dashed #aaa;border-radius:8px;text-align:center}
+.empty .cta{display:inline-block;padding:10px 16px;border:1px solid #333;border-radius:6px;text-decoration:none}
+@media (max-width:700px){
+  .filters{grid-template-columns:1fr 1fr}
+  .tickets{display:block;overflow-x:auto;white-space:nowrap}
 }
-th, td {
-  border:1px solid #ddd;
-  padding:10px;
-  text-align:left;
-}
-th {background:#f0f0f0;}
-tr:hover {background:#f9fafb;}
-a {color:#2563eb; text-decoration:none;}
-a:hover {text-decoration:underline;}

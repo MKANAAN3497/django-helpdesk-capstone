@@ -1,4 +1,3 @@
-# main_app/urls.py
 from django.urls import path
 from . import views
 
@@ -13,4 +12,5 @@ urlpatterns = [
     path('tickets/<int:id>/delete/', views.ticket_delete, name='ticket_delete'),
     path('tickets/<int:id>/comment/', views.comment_create, name='comment_create'),
     path('tickets/<int:id>/attach/', views.attachment_upload, name='attachment_upload'),
+    path('tickets/<int:id>/assign/', views.ticket_assign, name='ticket_assign'),
 ]
