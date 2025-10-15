@@ -1,0 +1,16 @@
+table {
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  border-radius:8px;
+  overflow:hidden;
+}
+th, td {
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:left;
+}
+th {background:#f0f0f0;}
+tr:hover {background:#f9fafb;}
+a {color:#2563eb; text-decoration:none;}
+a:hover {text-decoration:underline;}
