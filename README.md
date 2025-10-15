@@ -6,23 +6,14 @@ A simple helpdesk/ticketing web app built with Django. Users can sign up, log in
 ## Tech Stack
 - Python 3.13
 - Django
-- SQLite (dev) or PostgreSQL (optional)
+- SQLite (dev) or PostgreSQL
 - HTML + Django Templates (DTL)
 - Vanilla CSS (no frameworks)
 
 ## Data Model (ERD)
-Mermaid diagram (renders on GitHub):
+diagram:
+![ERD](docs/erd.png)
 
-```mermaid
-erDiagram
-    User ||--o{ Ticket : created_by
-    User ||--o{ Ticket : assigned_to
-    Category ||--o{ Ticket : has
-    Ticket ||--o{ Comment : has
-    User ||--o{ Comment : author
-    Ticket ||--o{ Attachment : has
-    User ||--o{ Attachment : uploaded_by
-```
 
 Entity notes:
 - Ticket: title, description, status, priority, category, created_by, assigned_to, timestamps
