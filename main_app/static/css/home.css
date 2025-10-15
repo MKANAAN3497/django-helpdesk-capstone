@@ -1,0 +1,28 @@
+.home-container {
+  max-width: 700px;
+  margin: 100px auto;
+  text-align: center;
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.home-container h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.home-container p {
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+.home-container a {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin: 5px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.home-container a.login { background: #2563eb; color: #fff; }
+.home-container a.signup { background: #e5e7eb; color: #111; }
